@@ -26,12 +26,22 @@ def auth():
 
 		return render_template('auth.html')
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
+	email = None
+
 	if 'user' in session:
 		user = session['user']
 
-		return render_template('profile.html', user=user)
+		if request.method == 'POST':
+			email = request.form['email']
+			session['email'] = email
+			flash('Email Saved')
+		else:
+			if 'email' in session:
+				email = session['email']
+
+		return render_template('profile.html', email=email)
 	else:
 		flash('Not Logged In')
 
@@ -41,6 +51,7 @@ def profile():
 def logout():
 	flash('Logged Out', 'info')
 	session.pop('user', None)
+	session.pop('email', None)
 
 	return redirect(url_for('auth'))
 
