@@ -1,0 +1,8 @@
+{
+	"name": "patient-explorer",
+	"version": "0.0.1",
+	"scripts": {
+		"activate": "activate.sh",
+		"deactivate": "deactivate"
+	}
+}
