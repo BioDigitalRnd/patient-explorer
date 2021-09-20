@@ -12,5 +12,8 @@
         {% endfor %}
     {% endif %}
     {% endwith %}
-    <p>Welcome, {{user}}</p>
+    <form method='POST' action='#'>
+        <input name='email' type='email' placeholder='Enter Email' value='{{email if email}}' />
+        <button type='submit'>Submit</button>
+    </form>
 {% endblock %}
